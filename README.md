@@ -18,7 +18,7 @@ These are to make sure repo is in sync with current robot status
 Robot status as of 9/23: with manualDriver, can drive robot with controller. 
 
 9/24:
-Added the robot code skeleton (issue #2). New: `Robot.java`, `subsystems/` (Drivetrain, Intake, Launcher), `opmodes/teleop/ExampleTeleOp.java`.
+Added the robot code skeleton (issue #2). New: `Robot.java`, `subsystems/` (Drivetrain, Intake, Launcher), `opmodes/teleop/ExampleTeleOp.java`, `opmodes/teleop/DriverControls.java`.
 Drivetrain uses the same config names and motor directions as manualDriver. Intake and Launcher are empty starters (issues #4 and #5).
 All code uses one direction convention: +X forward, +Y left, +turn counter-clockwise (decision 007).
 See `docs/code-structure.md` for how the code is organized and `docs/hardware-config.md` for config names.

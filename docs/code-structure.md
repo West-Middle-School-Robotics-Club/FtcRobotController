@@ -12,6 +12,7 @@ teamcode/
 │   └── Launcher.java
 └── opmodes/                ← what shows up on the Driver Station
     ├── teleop/
+    │   ├── DriverControls.java ← the ONLY code that turns gamepad sticks into drive commands
     │   └── ExampleTeleOp.java
     └── auto/
 ```
@@ -28,6 +29,8 @@ teamcode/
 5. **Config names match `docs/hardware-config.md`.**
 6. **Subsystems never read the gamepad.** The same subsystem is used by TeleOp *and* Autonomous;
    only the OpMode knows where commands come from (sticks in TeleOp, code in Autonomous).
+7. **Every TeleOp drives with `DriverControls.drive(robot.drivetrain, gamepad1);`.** Don't read the drive
+   sticks anywhere else. Autonomous skips `DriverControls` and calls `robot.drivetrain.drive(...)` directly.
 
 ## Directions (decision 007)
 
@@ -40,7 +43,12 @@ All of our code uses the same directions as the Pinpoint, Road Runner, Pedro Pat
 | **Heading / turn** | **counter-clockwise** (turning left) | `getHeading()` |
 
 The gamepad sticks are different (stick right = +X, stick forward = −Y).
-**Only TeleOp OpModes flip the stick values.** Everything else, including subsystems and autonomous, uses the table above.
+**Only `DriverControls` flips the stick values.** Everything else, including subsystems and autonomous, uses the table above.
+
+```
+TeleOp:  gamepad → DriverControls → drivetrain.drive(forward, left, turn) → motors
+Auto:    Pinpoint / path code ───→ drivetrain.drive(forward, left, turn) → motors
+```
 
 ## Adding a new mechanism
 

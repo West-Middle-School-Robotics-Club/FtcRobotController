@@ -12,7 +12,8 @@ import org.firstinspires.ftc.teamcode.Robot;
  *   2. Wait for START.
  *   3. Loop: read the gamepads, call subsystem methods, show telemetry.
  *
- * Notice there is no motor code here. All hardware details live in the subsystems.
+ * Notice there is no motor code here. All hardware details live in the subsystems,
+ * and turning sticks into drive commands lives in DriverControls.
  * Our real TeleOp (MainTeleOp) is issue #3.
  */
 @TeleOp(name = "Example TeleOp", group = "Examples")
@@ -27,14 +28,8 @@ public class ExampleTeleOp extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            // The gamepad sticks don't match our direction convention (decision 007),
-            // so we flip them HERE, and only here:
-            //   stick pushed forward = negative Y   -> flip to get +forward
-            //   stick pushed right   = positive X   -> flip to get +left
-            double forward = -gamepad1.left_stick_y;
-            double left    = -gamepad1.left_stick_x * 1.1; // * 1.1 counteracts imperfect strafing
-            double turn    = -gamepad1.right_stick_x;       // +turn = counter-clockwise
-            robot.drivetrain.drive(forward, left, turn);
+            // Driving always goes through DriverControls, so every TeleOp drives the same way.
+            DriverControls.drive(robot.drivetrain, gamepad1);
 
             robot.addTelemetry(telemetry);
             telemetry.update();
