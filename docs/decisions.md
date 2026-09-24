@@ -70,3 +70,11 @@ Options: Match the gamepad sticks everywhere, or match the Pinpoint everywhere.
 Decision: **Match the Pinpoint**: +X forward, +Y left, +heading counter-clockwise. This is also what Road Runner, Pedro Pathing and FTC field coordinates use, so outside code and examples agree with ours. `Drivetrain.drive(forward, left, turn)` uses it, and `opmodes/teleop/DriverControls.java` is the only place that flips the gamepad stick values (every TeleOp calls it). See the "Directions" section of `docs/code-structure.md`.
 Who: Team
 
+## 008 – Drive motors run without encoder speed control  (2026-09-24)
+Status: **Proposed**. Not final until the team decides in #11
+Issue: #11
+Context: Our drive motors have encoders. In `RUN_USING_ENCODER` mode the hub holds each wheel at a set speed, which means the same speed on a low battery and straighter driving. But it needs all four encoder cables working (a loose one can make a wheel spin at full speed), and it lowers top speed slightly.
+Options: `RUN_WITHOUT_ENCODER` (power = % of battery voltage) or `RUN_USING_ENCODER` (power = % of max speed).
+Decision (proposed): **`RUN_WITHOUT_ENCODER`**, for now. Precision in autonomous comes from the Pinpoint (decision 005), not the drive encoders, and Road Runner and Pedro Pathing normally expect this mode (#8). Drivers have already tested this feel with `manualDriver`. Revisit after the on-robot comparison in #11 and after #8 is decided.
+Who: Team (proposed; to be confirmed)
+

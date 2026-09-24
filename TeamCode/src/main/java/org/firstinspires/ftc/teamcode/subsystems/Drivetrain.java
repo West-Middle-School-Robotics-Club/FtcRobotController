@@ -46,6 +46,7 @@ public class Drivetrain {
         for (DcMotor motor : new DcMotor[] {frontLeft, frontRight, backLeft, backRight}) {
             // BRAKE makes the robot stop quickly when the sticks are released.
             motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            // Power = % of battery voltage. Proposed in decision 008; the team decides in issue #11.
             motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
     }
