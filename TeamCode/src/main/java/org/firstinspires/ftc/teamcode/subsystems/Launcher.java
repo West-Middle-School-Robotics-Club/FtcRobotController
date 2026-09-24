@@ -9,7 +9,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  *
  * STARTER CLASS: the methods exist so OpModes can already call them,
  * but they don't do anything yet. Filling this in is issue #5.
- * Use Drive.java as the example to follow.
+ * Use Drivetrain.java as the example to follow.
  */
 public class Launcher {
 

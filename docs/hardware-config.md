@@ -5,7 +5,7 @@ If a name doesn't match, the OpMode crashes on INIT with an error like `Unable t
 
 **Changing a name?** Update all three places: the Driver Station config, the constant in the subsystem class, and this table.
 
-## Drive (`subsystems/Drive.java`)
+## Drivetrain (`subsystems/Drivetrain.java`)
 
 | Config name | Device type | Hub / Port | Direction | Notes |
 |---|---|---|---|---|

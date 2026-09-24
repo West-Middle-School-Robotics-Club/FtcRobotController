@@ -7,7 +7,7 @@ We use **structured subsystems** (decision 006).
 teamcode/
 ├── Robot.java              ← holds every subsystem
 ├── subsystems/             ← one class per mechanism; the ONLY code that touches hardware
-│   ├── Drive.java
+│   ├── Drivetrain.java
 │   ├── Intake.java
 │   └── Launcher.java
 └── opmodes/                ← what shows up on the Driver Station
@@ -19,13 +19,15 @@ teamcode/
 ## The rules
 
 1. **Only subsystems touch hardware.** Motors, servos and sensors are `private` inside their subsystem.
-   OpModes call methods like `robot.drive.drive(...)` or `robot.intake.in()`, never `motor.setPower(...)`.
+   OpModes call methods like `robot.drivetrain.drive(...)` or `robot.intake.in()`, never `motor.setPower(...)`.
 2. **Every OpMode starts with `Robot robot = new Robot(hardwareMap);`.** See `ExampleTeleOp.java`.
 3. **No magic numbers.** Config names, speeds and positions are named constants at the top of the subsystem,
    e.g. `FRONT_LEFT_NAME = "frontLeftMotor"`.
 4. **Every subsystem has `stop()` and `addTelemetry(telemetry)`**, so `Robot` can stop everything
    and show everything with one call.
 5. **Config names match `docs/hardware-config.md`.**
+6. **Subsystems never read the gamepad.** The same subsystem is used by TeleOp *and* Autonomous;
+   only the OpMode knows where commands come from (sticks in TeleOp, code in Autonomous).
 
 ## Adding a new mechanism
 

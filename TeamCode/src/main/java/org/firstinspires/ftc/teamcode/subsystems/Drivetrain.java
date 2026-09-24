@@ -7,12 +7,16 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**
- * Drive subsystem: our four-motor mecanum drivetrain (decision 004).
+ * Drivetrain subsystem: our four-motor mecanum drivetrain (decision 004).
+ *
+ * Used by BOTH TeleOp and Autonomous. This class doesn't know where its
+ * commands come from: TeleOp gets them from the gamepad sticks, Autonomous
+ * gets them from code. Gamepad code belongs in OpModes, NOT here.
  *
  * This class is the ONLY place that talks to the drive motors.
  * OpModes just call drive(...) and stop().
  */
-public class Drive {
+public class Drivetrain {
 
     // Config names. These must match the Driver Station robot configuration EXACTLY.
     // If you change one here, update docs/hardware-config.md too.
@@ -26,7 +30,7 @@ public class Drive {
     private final DcMotor backLeft;
     private final DcMotor backRight;
 
-    public Drive(HardwareMap hardwareMap) {
+    public Drivetrain(HardwareMap hardwareMap) {
         frontLeft  = hardwareMap.get(DcMotor.class, FRONT_LEFT_NAME);
         frontRight = hardwareMap.get(DcMotor.class, FRONT_RIGHT_NAME);
         backLeft   = hardwareMap.get(DcMotor.class, BACK_LEFT_NAME);
@@ -79,7 +83,7 @@ public class Drive {
 
     /** Show this subsystem's status on the Driver Station. */
     public void addTelemetry(Telemetry telemetry) {
-        telemetry.addData("Drive front L/R", "%.2f  %.2f", frontLeft.getPower(), frontRight.getPower());
-        telemetry.addData("Drive back  L/R", "%.2f  %.2f", backLeft.getPower(), backRight.getPower());
+        telemetry.addData("Drivetrain front L/R", "%.2f  %.2f", frontLeft.getPower(), frontRight.getPower());
+        telemetry.addData("Drivetrain back  L/R", "%.2f  %.2f", backLeft.getPower(), backRight.getPower());
     }
 }

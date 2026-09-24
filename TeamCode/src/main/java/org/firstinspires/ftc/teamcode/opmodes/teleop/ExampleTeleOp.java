@@ -31,7 +31,7 @@ public class ExampleTeleOp extends LinearOpMode {
             double forward = -gamepad1.left_stick_y;
             double strafe  =  gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double turn    =  gamepad1.right_stick_x;
-            robot.drive.drive(forward, strafe, turn);
+            robot.drivetrain.drive(forward, strafe, turn);
 
             robot.addTelemetry(telemetry);
             telemetry.update();
