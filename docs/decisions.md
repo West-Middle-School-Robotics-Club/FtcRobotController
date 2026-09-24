@@ -75,6 +75,12 @@ Status: **Proposed**. Not final until the team decides in #11
 Issue: #11
 Context: Our drive motors have encoders. In `RUN_USING_ENCODER` mode the hub holds each wheel at a set speed, which means the same speed on a low battery and straighter driving. But it needs all four encoder cables working (a loose one can make a wheel spin at full speed), and it lowers top speed slightly.
 Options: `RUN_WITHOUT_ENCODER` (power = % of battery voltage) or `RUN_USING_ENCODER` (power = % of max speed).
-Decision (proposed): **`RUN_WITHOUT_ENCODER`**, for now. Precision in autonomous comes from the Pinpoint (decision 005), not the drive encoders, and Road Runner and Pedro Pathing normally expect this mode (#8). Drivers have already tested this feel with `manualDriver`. Revisit after the on-robot comparison in #11 and after #8 is decided.
+Decision (proposed): **`RUN_WITHOUT_ENCODER`**, for now:
+- **Reliable:** nothing depends on encoder cables, so a loose one can't make a wheel go wild mid-match.
+- **Full speed and direct feel:** all motor power goes to the wheels, and drivers already practice with this mode (`manualDriver`).
+- **Precision comes from the Pinpoint** (decision 005), which corrects for battery level and wheel differences in autonomous.
+- **Road Runner and Pedro Pathing normally expect this mode** (#8).
+
+The trade-off is that speed drops as the battery drains and the robot may pull slightly to one side; in TeleOp the driver corrects for that. Revisit after the on-robot comparison in #11 and after #8 is decided.
 Who: Team (proposed; to be confirmed)
 
