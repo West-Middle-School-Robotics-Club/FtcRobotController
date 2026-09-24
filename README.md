@@ -16,3 +16,8 @@ All code should be added in the TeamCode folder NOT the FtcRobotController.
 Added HelloWorld, manualDriver, and manualDriver_kids_copy.
 These are to make sure repo is in sync with current robot status
 Robot status as of 9/23: with manualDriver, can drive robot with controller. 
+
+9/24:
+Added the robot code skeleton (issue #2). New: `Robot.java`, `subsystems/` (Drive, Intake, Launcher), `opmodes/teleop/ExampleTeleOp.java`.
+Drive uses the same config names and motor directions as manualDriver. Intake and Launcher are empty starters (issues #4 and #5).
+See `docs/code-structure.md` for how the code is organized and `docs/hardware-config.md` for config names.
