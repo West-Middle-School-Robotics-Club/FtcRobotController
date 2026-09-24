@@ -53,16 +53,21 @@ public class Drivetrain {
     /**
      * Drive the robot, relative to the way the robot is facing.
      *
-     * @param forward positive = drive forward       (-1 to 1)
-     * @param strafe  positive = drive right         (-1 to 1)
-     * @param turn    positive = turn clockwise      (-1 to 1)
+     * Directions follow our team convention (decision 007), the same as the Pinpoint:
+     * +forward = forward, +left = LEFT, +turn = COUNTER-CLOCKWISE (turning left).
+     *
+     * @param forward positive = drive forward                  (-1 to 1)
+     * @param left    positive = strafe LEFT                     (-1 to 1)
+     * @param turn    positive = turn COUNTER-CLOCKWISE (left)   (-1 to 1)
      */
-    public void drive(double forward, double strafe, double turn) {
-        // Mecanum math: each wheel gets a mix of forward, strafe and turn.
-        double frontLeftPower  = forward + strafe + turn;
-        double frontRightPower = forward - strafe - turn;
-        double backLeftPower   = forward - strafe + turn;
-        double backRightPower  = forward + strafe - turn;
+    public void drive(double forward, double left, double turn) {
+        // Mecanum math: each wheel gets a mix of forward, left and turn.
+        // To strafe left, the front-left and back-right wheels spin backwards.
+        // To turn left, the left side spins backwards and the right side forwards.
+        double frontLeftPower  = forward - left - turn;
+        double frontRightPower = forward + left + turn;
+        double backLeftPower   = forward + left - turn;
+        double backRightPower  = forward - left + turn;
 
         // If any power is above 1, scale them all down together so the
         // robot still moves in the direction the driver asked for.

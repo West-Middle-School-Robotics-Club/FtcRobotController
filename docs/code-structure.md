@@ -29,6 +29,19 @@ teamcode/
 6. **Subsystems never read the gamepad.** The same subsystem is used by TeleOp *and* Autonomous;
    only the OpMode knows where commands come from (sticks in TeleOp, code in Autonomous).
 
+## Directions (decision 007)
+
+All of our code uses the same directions as the Pinpoint, Road Runner, Pedro Pathing and the FTC field:
+
+| | Positive (+) means | Pinpoint value |
+|---|---|---|
+| **X / forward** | forward | `getPosX()` |
+| **Y / left** | **left** | `getPosY()` |
+| **Heading / turn** | **counter-clockwise** (turning left) | `getHeading()` |
+
+The gamepad sticks are different (stick right = +X, stick forward = −Y).
+**Only TeleOp OpModes flip the stick values.** Everything else, including subsystems and autonomous, uses the table above.
+
 ## Adding a new mechanism
 
 1. Create `subsystems/YourThing.java`. Copy the shape of `Intake.java`.

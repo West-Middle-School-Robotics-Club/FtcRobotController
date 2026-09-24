@@ -61,3 +61,12 @@ Context: Several students will work on the code at the same time, and it needs t
 Options: Simple OpModes with one hardware class, structured subsystems, or a command-based framework (FTCLib/NextFTC).
 Decision: **Structured subsystems.** Each mechanism gets its own class (e.g. `Drive`, `Intake`, `Arm`) that owns its hardware and exposes simple methods. OpModes stay short and call those methods. Students can each own a subsystem with fewer merge conflicts. This is easier to learn than a command-based framework, and we can move to one later if needed.
 Who: Team
+
+## 007 – One direction convention: +X forward, +Y left, +heading counter-clockwise  (2026-09-24)
+Status: Accepted
+Issue: #6
+Context: The Pinpoint reports +Y = left and +heading = counter-clockwise. Our first `Drivetrain.drive()` used +strafe = right and +turn = clockwise, to match the gamepad sticks. Mixing the two in autonomous would drive the robot the wrong way without any error.
+Options: Match the gamepad sticks everywhere, or match the Pinpoint everywhere.
+Decision: **Match the Pinpoint**: +X forward, +Y left, +heading counter-clockwise. This is also what Road Runner, Pedro Pathing and FTC field coordinates use, so outside code and examples agree with ours. `Drivetrain.drive(forward, left, turn)` uses it, and TeleOp OpModes are the only place that flips the gamepad stick values. See the "Directions" section of `docs/code-structure.md`.
+Who: Team
+

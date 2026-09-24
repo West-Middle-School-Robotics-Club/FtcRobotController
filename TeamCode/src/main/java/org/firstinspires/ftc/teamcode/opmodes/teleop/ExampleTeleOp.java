@@ -27,11 +27,14 @@ public class ExampleTeleOp extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            // The gamepad's Y stick is negative when pushed forward, so flip it.
+            // The gamepad sticks don't match our direction convention (decision 007),
+            // so we flip them HERE, and only here:
+            //   stick pushed forward = negative Y   -> flip to get +forward
+            //   stick pushed right   = positive X   -> flip to get +left
             double forward = -gamepad1.left_stick_y;
-            double strafe  =  gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
-            double turn    =  gamepad1.right_stick_x;
-            robot.drivetrain.drive(forward, strafe, turn);
+            double left    = -gamepad1.left_stick_x * 1.1; // * 1.1 counteracts imperfect strafing
+            double turn    = -gamepad1.right_stick_x;       // +turn = counter-clockwise
+            robot.drivetrain.drive(forward, left, turn);
 
             robot.addTelemetry(telemetry);
             telemetry.update();
