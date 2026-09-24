@@ -1,0 +1,63 @@
+# Decision Log — BIOBUZZ 2026–27
+
+This file records **why** we made important choices, so new members (and judges) can understand our robot and code.
+
+**How to use it**
+1. Discuss the decision in a GitHub Issue first.
+2. When the team agrees, add an entry at the bottom using the template, and link the Issue.
+3. Never delete an old decision. If we change our minds, add a new entry and mark the old one `Superseded by #NNN`.
+
+**Template**
+```
+## NNN – Short title  (YYYY-MM-DD)
+Status: Proposed | Accepted | Superseded by NNN
+Issue: #__
+Context: What problem are we solving? What constraints matter?
+Options: What did we consider?
+Decision: What did we pick, and why?
+Who: Who was part of the decision?
+```
+
+---
+
+## 001 – Use FTC SDK v12.0 and keep team code in `TeamCode`  (2026-09-24)
+Status: Accepted
+Context: Our repo is a fork of FIRST's official FtcRobotController. FIRST releases SDK updates during the season that we'll need to merge in.
+Options: Edit anywhere in the project, or only in `TeamCode/`.
+Decision: All team code lives in `TeamCode/`. We don't edit the `FtcRobotController/` module, so SDK updates merge cleanly. When we want a sample, we copy it into `TeamCode/`.
+Who: Team
+
+## 002 – Don't use AprilTags for field localization  (2026-09-24)
+Status: Accepted
+Context: In BIOBUZZ the AprilTags are mounted on moving game elements. The SDK v12.0 release notes say they aren't suitable for absolute field localization. Tags come in "clusters" whose origin is the center of a Cell opening.
+Options: Use AprilTags for position, or use AprilTags only for aiming.
+Decision: We use AprilTags only for **aiming at Cells**. Robot position comes from odometry (see 005). Any AprilTag code must handle both `AprilTagSingleDetection` and `AprilTagClusterDetection` (breaking change in v12.0).
+Who: Team
+
+## 003 – Program in Android Studio  (2026-09-24)
+Status: Accepted
+Context: The options are Blocks, OnBot Java (in the browser), or Android Studio.
+Options: Blocks, OnBot Java, Android Studio.
+Decision: **Android Studio.** It works with git and GitHub (Issues, pull requests, code review) and lets us use third-party libraries (path following, FTC Dashboard). It requires Android Studio **Narwhal 3 Feature Drop or later**. Never accept Android Studio's offer to downgrade the Android Gradle Plugin.
+Who: Team
+
+## 004 – Four-motor mecanum drivetrain  (2026-09-24)
+Status: Accepted
+Context: The drivetrain decides how the robot moves and how the drive code is written.
+Options: Mecanum, tank/differential.
+Decision: **Four-motor mecanum.** Strafing (driving sideways) makes lining up with scoring locations easier in both TeleOp and autonomous. It's also the most common FTC drivetrain, with lots of examples (see the SDK samples `BasicOmniOpMode_Linear` and `RobotTeleopMecanumFieldRelativeDrive`).
+Who: Team
+
+## 005 – goBILDA Pinpoint for odometry  (2026-09-24)
+Status: Accepted
+Context: Because of decision 002, we need something other than AprilTags to know where the robot is on the field during autonomous.
+Options: goBILDA Pinpoint, SparkFun OTOS, drive encoders + IMU only.
+Decision: **goBILDA Pinpoint** with two odometry pods. It's accurate, widely used, and has a built-in SDK driver (see the SDK sample `SensorGoBildaPinpoint`). Path-following libraries like Road Runner and Pedro Pathing support it.
+Who: Team
+
+## 006 – Structured subsystems code style  (2026-09-24)
+Status: Accepted
+Context: Several students will work on the code at the same time, and it needs to stay readable as the robot grows.
+Options: Simple OpModes with one hardware class, structured subsystems, or a command-based framework (FTCLib/NextFTC).
+Decision: **Structured subsystems.** Each mechanism gets its own class (e.g. `Drive`, `Intake`, `Arm`) that owns its hardware and exposes simple methods. OpModes stay short and call those methods. Students can each own a subsystem with fewer merge conflicts. This is easier to learn than a command-based framework, and we can move to one later if needed.
+Who: Team
