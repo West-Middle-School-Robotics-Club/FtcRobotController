@@ -67,7 +67,7 @@ Status: Accepted
 Issue: #6
 Context: The Pinpoint reports +Y = left and +heading = counter-clockwise. Our first `Drivetrain.drive()` used +strafe = right and +turn = clockwise, to match the gamepad sticks. Mixing the two in autonomous would drive the robot the wrong way without any error.
 Options: Match the gamepad sticks everywhere, or match the Pinpoint everywhere.
-Decision: **Match the Pinpoint**: +X forward, +Y left, +heading counter-clockwise. This is also what Road Runner, Pedro Pathing and FTC field coordinates use, so outside code and examples agree with ours. `Drivetrain.drive(forward, left, turn)` uses it, and `opmodes/teleop/DriverControls.java` is the only place that flips the gamepad stick values (every TeleOp calls it). See the "Directions" section of `docs/code-structure.md`.
+Decision: **Match the Pinpoint**: +X forward, +Y left, +heading counter-clockwise. This is also what Road Runner, Pedro Pathing and FTC field coordinates use, so outside code and examples agree with ours. `Drivetrain.drive(forward, left, turn)` uses it, and `opmodes/teleop/DriverControls.java` is the only place that flips the gamepad stick values (every TeleOp calls it). See the "Directions" section of `TeamCode/docs/code-structure.md`.
 Who: Team
 
 ## 008 – Drive motors run without encoder speed control  (2026-09-24)
@@ -93,6 +93,14 @@ Decision:
 - **Drive motors are named by their job: `frontLeftDrive`, `frontRightDrive`, `backLeftDrive`, `backRightDrive`.** No outside standard exists. "Drive" says more than "Motor", because the intake and launcher use motors too. (Renamed from `frontLeftMotor` etc. on 9/25.)
 - **Mechanisms:** camelCase, mechanism first, then the part (`intakeMotor`, `launcherFeedServo`).
 - **Variables in code use the same name as the config name** (`DcMotor frontLeftDrive`), so one name means one device everywhere.
-- Name hardware by its job, not its port. The full rules are in `docs/hardware-config.md`.
+- Name hardware by its job, not its port. The full rules are in `TeamCode/docs/hardware-config.md`.
+Who: Team
+
+## 010 – Team docs live in `TeamCode/docs/`  (2026-09-25)
+Status: Accepted
+Issue: #12
+Context: Our docs started in a root `docs/` folder, right next to FIRST's `doc/` folder (legal text and images). The two names were easy to mix up. Decision 001 already keeps our code in `TeamCode/` so SDK updates merge cleanly.
+Options: Keep root `docs/`, rename it (e.g. `WMSTeamDocs/`), or move it to `TeamCode/docs/`.
+Decision: **`TeamCode/docs/`.** One simple rule: everything our team makes is in `TeamCode/`. No confusion with FIRST's `doc/` folder, FIRST never adds files there, and the build ignores it (Gradle only compiles `TeamCode/src/`). Restoring FIRST's `README.md` for the same reason is tracked in #12.
 Who: Team
 

@@ -1,6 +1,8 @@
 # How Our Code Is Organized
 
-All of our code lives in `TeamCode/src/main/java/org/firstinspires/ftc/teamcode/` (decision 001).
+Everything our team makes lives in `TeamCode/` (decisions 001 and 010):
+- **Code:** `TeamCode/src/main/java/org/firstinspires/ftc/teamcode/`
+- **Docs:** `TeamCode/docs/` (this file, `decisions.md`, `hardware-config.md`)
 We use **structured subsystems** (decision 006).
 
 ```
@@ -27,7 +29,7 @@ teamcode/
    The variable holding the device uses the same name as the config: `frontLeftDrive`.
 4. **Every subsystem has `stop()` and `addTelemetry(telemetry)`**, so `Robot` can stop everything
    and show everything with one call.
-5. **Config names match `docs/hardware-config.md`.**
+5. **Config names match `TeamCode/docs/hardware-config.md`.**
 6. **Subsystems never read the gamepad.** The same subsystem is used by TeleOp *and* Autonomous;
    only the OpMode knows where commands come from (sticks in TeleOp, code in Autonomous).
 7. **Every TeleOp drives with `DriverControls.drive(robot.drivetrain, gamepad1);`.** Don't read the drive
@@ -54,7 +56,7 @@ Auto:    Pinpoint / path code ───→ drivetrain.drive(forward, left, turn)
 ## Adding a new mechanism
 
 1. Create `subsystems/YourThing.java`. Copy the shape of `Intake.java`.
-2. Add its config names to `docs/hardware-config.md`.
+2. Add its config names to `TeamCode/docs/hardware-config.md`.
 3. Add it to `Robot.java` in the field, the constructor, `stop()` and `addTelemetry()`.
 4. Call its methods from an OpMode.
 

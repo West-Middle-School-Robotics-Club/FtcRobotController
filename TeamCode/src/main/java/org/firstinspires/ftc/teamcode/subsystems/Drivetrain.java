@@ -19,7 +19,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Drivetrain {
 
     // Config names. These must match the Driver Station robot configuration EXACTLY.
-    // If you change one here, update docs/hardware-config.md too.
+    // If you change one here, update TeamCode/docs/hardware-config.md too.
     public static final String FRONT_LEFT_DRIVE_NAME  = "frontLeftDrive";
     public static final String FRONT_RIGHT_DRIVE_NAME = "frontRightDrive";
     public static final String BACK_LEFT_DRIVE_NAME   = "backLeftDrive";

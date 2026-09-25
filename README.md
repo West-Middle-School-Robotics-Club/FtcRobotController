@@ -22,4 +22,4 @@ Added the robot code skeleton (issue #2). New: `Robot.java`, `subsystems/` (Driv
 Drivetrain uses the same motor directions as manualDriver.
 Drive motors are renamed to frontLeftDrive, frontRightDrive, backLeftDrive, backRightDrive (decision 009). The Driver Station robot configuration uses the new names. manualDriver and manualDriver_kids_copy were updated to the new names. Intake and Launcher are empty starters (issues #4 and #5).
 All code uses one direction convention: +X forward, +Y left, +turn counter-clockwise (decision 007).
-See `docs/code-structure.md` for how the code is organized and `docs/hardware-config.md` for config names.
+See `TeamCode/docs/code-structure.md` for how the code is organized and `TeamCode/docs/hardware-config.md` for config names.
