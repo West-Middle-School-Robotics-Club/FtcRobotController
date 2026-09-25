@@ -1,7 +1,7 @@
 # Hardware Configuration
 
 The names in the **Driver Station robot configuration** must match the names in our code **exactly**, including capital letters.
-If a name doesn't match, the OpMode crashes on INIT with an error like `Unable to find a hardware device with name "frontLeftMotor"`.
+If a name doesn't match, the OpMode crashes on INIT with an error like `Unable to find a hardware device with name "frontLeftDrive"`.
 
 **Changing a name?** Update all three places: the Driver Station config, the constant in the subsystem class, and this table.
 
@@ -10,8 +10,8 @@ If a name doesn't match, the OpMode crashes on INIT with an error like `Unable t
 | Kind of hardware | Rule | Examples |
 |---|---|---|
 | **One-of-a-kind devices** | Use the standard name that the SDK samples, Road Runner and Pedro Pathing all use | `imu`, `pinpoint`, `webcam` |
-| **Drive motors** | Keep our existing names | `frontLeftMotor`, `frontRightMotor`, `backLeftMotor`, `backRightMotor` |
-| **Mechanisms** | Same style as the drive motors: camelCase, mechanism first, device type last | `intakeMotor`, `launcherMotor`, `launcherFeedServo`, `intakeColorSensor` |
+| **Drive motors** | `<position>Drive`: named by their job, since other mechanisms use motors too | `frontLeftDrive`, `frontRightDrive`, `backLeftDrive`, `backRightDrive` |
+| **Mechanisms** | camelCase, mechanism first, then the part | `intakeMotor`, `launcherMotor`, `launcherFeedServo`, `intakeColorSensor` |
 
 - Name hardware by its **job**, not its port (`intakeMotor`, not `motor2`).
 - No spaces. Names are **case-sensitive**.
@@ -21,10 +21,10 @@ If a name doesn't match, the OpMode crashes on INIT with an error like `Unable t
 
 | Config name | Device type | Hub / Port | Direction | Notes |
 |---|---|---|---|---|
-| `frontLeftMotor`  | Motor | Control Hub / motor __ | REVERSE | Left side reversed (tested 9/23) |
-| `backLeftMotor`   | Motor | Control Hub / motor __ | REVERSE | |
-| `frontRightMotor` | Motor | Control Hub / motor __ | FORWARD | |
-| `backRightMotor`  | Motor | Control Hub / motor __ | FORWARD | |
+| `frontLeftDrive`  | Motor | Control Hub / motor __ | REVERSE | Left side reversed (tested 9/23) |
+| `backLeftDrive`   | Motor | Control Hub / motor __ | REVERSE | |
+| `frontRightDrive` | Motor | Control Hub / motor __ | FORWARD | |
+| `backRightDrive`  | Motor | Control Hub / motor __ | FORWARD | |
 
 ## IMU
 

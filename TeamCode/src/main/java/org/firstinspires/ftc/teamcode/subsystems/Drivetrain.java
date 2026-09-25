@@ -20,10 +20,10 @@ public class Drivetrain {
 
     // Config names. These must match the Driver Station robot configuration EXACTLY.
     // If you change one here, update docs/hardware-config.md too.
-    public static final String FRONT_LEFT_NAME  = "frontLeftMotor";
-    public static final String FRONT_RIGHT_NAME = "frontRightMotor";
-    public static final String BACK_LEFT_NAME   = "backLeftMotor";
-    public static final String BACK_RIGHT_NAME  = "backRightMotor";
+    public static final String FRONT_LEFT_NAME  = "frontLeftDrive";
+    public static final String FRONT_RIGHT_NAME = "frontRightDrive";
+    public static final String BACK_LEFT_NAME   = "backLeftDrive";
+    public static final String BACK_RIGHT_NAME  = "backRightDrive";
 
     private final DcMotor frontLeft;
     private final DcMotor frontRight;

@@ -90,8 +90,8 @@ Context: Config names in the Driver Station must match the code exactly, and we'
 Options: Every source agrees on one-of-a-kind devices (`imu`, `pinpoint`). Drive motor names are all different (`front_left_drive`, `leftFront`, `lf`, `frontLeftMotor`), and libraries let you change them.
 Decision:
 - **One-of-a-kind devices use the standard names:** `imu`, `pinpoint`, `webcam` (not the default `Webcam 1`).
-- **Drive motors keep our existing names** (`frontLeftMotor`, etc.). No outside standard exists, so there's no reason to change them.
-- **Mechanisms follow the same style:** camelCase, mechanism first, device type last (`intakeMotor`, `launcherFeedServo`).
+- **Drive motors are named by their job: `frontLeftDrive`, `frontRightDrive`, `backLeftDrive`, `backRightDrive`.** No outside standard exists. "Drive" says more than "Motor", because the intake and launcher use motors too. (Renamed from `frontLeftMotor` etc., so the Driver Station config must be updated to match.)
+- **Mechanisms:** camelCase, mechanism first, then the part (`intakeMotor`, `launcherFeedServo`).
 - Name hardware by its job, not its port. The full rules are in `docs/hardware-config.md`.
 Who: Team
 

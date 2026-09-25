@@ -14,10 +14,10 @@ public class manualDriver_kids_copy extends LinearOpMode {
 
         //---------------------------------------------------------------
         //EDITS HERE FOR KIDS
-        DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeftMotor");
-        DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeftMotor");
-        DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
-        DcMotor backRightMotor = hardwareMap.dcMotor.get("backRightMotor");
+        DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeftDrive");
+        DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeftDrive");
+        DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRightDrive");
+        DcMotor backRightMotor = hardwareMap.dcMotor.get("backRightDrive");
 
         // Reverse the right side motors. This may be wrong for your setup.
         // If your robot moves backwards when commanded to go forwards,
