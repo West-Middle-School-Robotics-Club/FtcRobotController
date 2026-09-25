@@ -20,30 +20,30 @@ public class Drivetrain {
 
     // Config names. These must match the Driver Station robot configuration EXACTLY.
     // If you change one here, update docs/hardware-config.md too.
-    public static final String FRONT_LEFT_NAME  = "frontLeftDrive";
-    public static final String FRONT_RIGHT_NAME = "frontRightDrive";
-    public static final String BACK_LEFT_NAME   = "backLeftDrive";
-    public static final String BACK_RIGHT_NAME  = "backRightDrive";
+    public static final String FRONT_LEFT_DRIVE_NAME  = "frontLeftDrive";
+    public static final String FRONT_RIGHT_DRIVE_NAME = "frontRightDrive";
+    public static final String BACK_LEFT_DRIVE_NAME   = "backLeftDrive";
+    public static final String BACK_RIGHT_DRIVE_NAME  = "backRightDrive";
 
-    private final DcMotor frontLeft;
-    private final DcMotor frontRight;
-    private final DcMotor backLeft;
-    private final DcMotor backRight;
+    private final DcMotor frontLeftDrive;
+    private final DcMotor frontRightDrive;
+    private final DcMotor backLeftDrive;
+    private final DcMotor backRightDrive;
 
     public Drivetrain(HardwareMap hardwareMap) {
-        frontLeft  = hardwareMap.get(DcMotor.class, FRONT_LEFT_NAME);
-        frontRight = hardwareMap.get(DcMotor.class, FRONT_RIGHT_NAME);
-        backLeft   = hardwareMap.get(DcMotor.class, BACK_LEFT_NAME);
-        backRight  = hardwareMap.get(DcMotor.class, BACK_RIGHT_NAME);
+        frontLeftDrive  = hardwareMap.get(DcMotor.class, FRONT_LEFT_DRIVE_NAME);
+        frontRightDrive = hardwareMap.get(DcMotor.class, FRONT_RIGHT_DRIVE_NAME);
+        backLeftDrive   = hardwareMap.get(DcMotor.class, BACK_LEFT_DRIVE_NAME);
+        backRightDrive  = hardwareMap.get(DcMotor.class, BACK_RIGHT_DRIVE_NAME);
 
         // The LEFT side is reversed on our robot (tested 9/23 with manualDriver).
         // If the robot drives backwards when you push the stick forward, swap these.
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        backRight.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+        backRightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        for (DcMotor motor : new DcMotor[] {frontLeft, frontRight, backLeft, backRight}) {
+        for (DcMotor motor : new DcMotor[] {frontLeftDrive, frontRightDrive, backLeftDrive, backRightDrive}) {
             // BRAKE makes the robot stop quickly when the sticks are released.
             motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             // Power = % of battery voltage. Proposed in decision 008; the team decides in issue #11.
@@ -76,10 +76,10 @@ public class Drivetrain {
                 Math.max(Math.abs(frontLeftPower), Math.abs(frontRightPower)),
                 Math.max(Math.abs(backLeftPower), Math.abs(backRightPower))));
 
-        frontLeft.setPower(frontLeftPower / max);
-        frontRight.setPower(frontRightPower / max);
-        backLeft.setPower(backLeftPower / max);
-        backRight.setPower(backRightPower / max);
+        frontLeftDrive.setPower(frontLeftPower / max);
+        frontRightDrive.setPower(frontRightPower / max);
+        backLeftDrive.setPower(backLeftPower / max);
+        backRightDrive.setPower(backRightPower / max);
     }
 
     /** Stop all drive motors. */
@@ -89,7 +89,7 @@ public class Drivetrain {
 
     /** Show this subsystem's status on the Driver Station. */
     public void addTelemetry(Telemetry telemetry) {
-        telemetry.addData("Drivetrain front L/R", "%.2f  %.2f", frontLeft.getPower(), frontRight.getPower());
-        telemetry.addData("Drivetrain back  L/R", "%.2f  %.2f", backLeft.getPower(), backRight.getPower());
+        telemetry.addData("Drivetrain front L/R", "%.2f  %.2f", frontLeftDrive.getPower(), frontRightDrive.getPower());
+        telemetry.addData("Drivetrain back  L/R", "%.2f  %.2f", backLeftDrive.getPower(), backRightDrive.getPower());
     }
 }

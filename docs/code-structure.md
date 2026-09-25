@@ -23,7 +23,8 @@ teamcode/
    OpModes call methods like `robot.drivetrain.drive(...)` or `robot.intake.in()`, never `motor.setPower(...)`.
 2. **Every OpMode starts with `Robot robot = new Robot(hardwareMap);`.** See `ExampleTeleOp.java`.
 3. **No magic numbers.** Config names, speeds and positions are named constants at the top of the subsystem,
-   e.g. `FRONT_LEFT_NAME = "frontLeftDrive"`.
+   e.g. `FRONT_LEFT_DRIVE_NAME = "frontLeftDrive"`.
+   The variable holding the device uses the same name as the config: `frontLeftDrive`.
 4. **Every subsystem has `stop()` and `addTelemetry(telemetry)`**, so `Robot` can stop everything
    and show everything with one call.
 5. **Config names match `docs/hardware-config.md`.**

@@ -14,6 +14,7 @@ If a name doesn't match, the OpMode crashes on INIT with an error like `Unable t
 | **Mechanisms** | camelCase, mechanism first, then the part | `intakeMotor`, `launcherMotor`, `launcherFeedServo`, `intakeColorSensor` |
 
 - Name hardware by its **job**, not its port (`intakeMotor`, not `motor2`).
+- The **variable in code uses the same name** as the config name: `DcMotor frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeftDrive");`
 - No spaces. Names are **case-sensitive**.
 - Label the physical wires with the same name.
 
