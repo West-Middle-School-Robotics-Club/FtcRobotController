@@ -84,3 +84,14 @@ Decision (proposed): **`RUN_WITHOUT_ENCODER`**, for now:
 The trade-off is that speed drops as the battery drains and the robot may pull slightly to one side; in TeleOp the driver corrects for that. Revisit after the on-robot comparison in #11 and after #8 is decided.
 Who: Team (proposed; to be confirmed)
 
+## 009 – Hardware naming rules  (2026-09-25)
+Status: Accepted
+Context: Config names in the Driver Station must match the code exactly, and we're about to add intake, launcher, odometry and camera hardware. We compared the names used by the FTC SDK samples, Road Runner, Pedro Pathing, goBILDA and gm0.
+Options: Every source agrees on one-of-a-kind devices (`imu`, `pinpoint`). Drive motor names are all different (`front_left_drive`, `leftFront`, `lf`, `frontLeftMotor`), and libraries let you change them.
+Decision:
+- **One-of-a-kind devices use the standard names:** `imu`, `pinpoint`, `webcam` (not the default `Webcam 1`).
+- **Drive motors keep our existing names** (`frontLeftMotor`, etc.). No outside standard exists, so there's no reason to change them.
+- **Mechanisms follow the same style:** camelCase, mechanism first, device type last (`intakeMotor`, `launcherFeedServo`).
+- Name hardware by its job, not its port. The full rules are in `docs/hardware-config.md`.
+Who: Team
+
