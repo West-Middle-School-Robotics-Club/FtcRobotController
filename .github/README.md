@@ -3,7 +3,7 @@
 This repository contains the code for WMS Irondogs's BIOBUZZ robot for the (2026-2027) competition season.
 
 ## Requirements
-For this year, we are using Android Studio to develop the code for the robot, refer to the README_FTC for more information on setup. 
+For this year, we are using Android Studio to develop the code for the robot, refer to [README.md](../README.md) for more information on setup. 
 
 ## Administrators
 Jonathan Rakozy, Matt Becker, & Nadinne Motta
