@@ -20,7 +20,8 @@ teamcode/
     ├── auto/
     └── test/               ← test and tuning OpModes (the "Tests" group on the Driver Station)
         ├── BrakeModeCheck.java
-        └── PinpointTest.java
+        ├── PinpointTest.java
+        └── TestDriveMotors.java ← test-only helper; never used by real robot code
 ```
 
 `Odometry` is created directly by the OpModes that need it, not by `Robot.java` yet. Once the Pinpoint is
@@ -41,6 +42,10 @@ configured and tested on the robot (issue #6), we'll add it to `Robot.java` like
    only the OpMode knows where commands come from (sticks in TeleOp, code in Autonomous).
 7. **Every TeleOp drives with `DriverControls.drive(robot.drivetrain, gamepad1);`.** Don't read the drive
    sticks anywhere else. Autonomous skips `DriverControls` and calls `robot.drivetrain.drive(...)` directly.
+8. **Test code stays in `opmodes/test/`.** Test and tuning OpModes (and their helpers) may break rules 1–7
+   when a test needs to, for example by reading or changing motor settings directly. Real robot code
+   (subsystems, `opmodes/teleop/`, `opmodes/auto/`) **never** uses anything from `opmodes/test/`, and we never
+   add test-only methods to subsystems. That way test code can be deleted without touching real code.
 
 ## Directions (decision 007)
 

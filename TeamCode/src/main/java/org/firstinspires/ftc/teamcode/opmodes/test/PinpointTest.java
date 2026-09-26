@@ -4,6 +4,7 @@ import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.navigation.UnnormalizedAngleUnit;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.opmodes.teleop.DriverControls;
 import org.firstinspires.ftc.teamcode.subsystems.Odometry;
@@ -28,9 +29,11 @@ public class PinpointTest extends LinearOpMode {
     public void runOpMode() {
         Robot robot = new Robot(hardwareMap);
         Odometry odometry = new Odometry(hardwareMap);
+        // Test-only: the same Pinpoint, read directly for extra tuning details (code-structure rule 8).
+        GoBildaPinpointDriver pinpoint = hardwareMap.get(GoBildaPinpointDriver.class, Odometry.PINPOINT_NAME);
 
         // Easier to push the robot by hand for the distance tests.
-        robot.drivetrain.setBrake(false);
+        TestDriveMotors.setBrake(hardwareMap, false);
 
         // Wait for START, showing whether the IMU calibration has finished.
         while (opModeInInit()) {
@@ -59,7 +62,9 @@ public class PinpointTest extends LinearOpMode {
             telemetry.addLine("A = reset to 0,0,0     B = reset + recalibrate (keep STILL)");
             telemetry.addLine();
             odometry.addTelemetry(telemetry);
-            odometry.addDebugTelemetry(telemetry);
+            telemetry.addData("Total turning (°)", "%.1f", pinpoint.getHeading(UnnormalizedAngleUnit.DEGREES));
+            telemetry.addData("Raw encoder X / Y", "%d  /  %d", pinpoint.getEncoderX(), pinpoint.getEncoderY());
+            telemetry.addData("Pinpoint update rate (Hz)", "%.0f", pinpoint.getFrequency());
             telemetry.addLine();
             telemetry.addLine("Push forward: X goes UP");
             telemetry.addLine("Push left: Y goes UP");
@@ -74,6 +79,6 @@ public class PinpointTest extends LinearOpMode {
         // (like manualDriver) may keep coasting after this one. This line would switch back to BRAKE.
         // It's commented out ON PURPOSE so we can see the problem happen first. After the
         // experiment, un-comment it:
-        // robot.drivetrain.setBrake(true);
+        // TestDriveMotors.setBrake(hardwareMap, true);
     }
 }

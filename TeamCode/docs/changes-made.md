@@ -17,9 +17,8 @@ See `TeamCode/docs/code-structure.md` for how the code is organized and `TeamCod
 9/26:
 Added `subsystems/Odometry.java` (the Pinpoint) and the "Pinpoint Test" OpMode in `opmodes/test/` (issue #6).
 Students tune the pod type, offsets and directions at the top of Odometry.java by following the test procedure in issue #6.
-Added `Drivetrain.setBrake()` so the robot can be pushed by hand during tests.
 Added the "Brake Mode Check" test OpMode and experiment issue #17: does brake mode carry over between OpModes?
-Drivetrain now remembers the brake mode left over from before it starts (`getBrakeModeAtStart()`).
+Test-only brake code lives in `opmodes/test/TestDriveMotors.java`, not in Drivetrain (code-structure rule 8), so Pinpoint Test can let the robot be pushed by hand.
 The line that switches Pinpoint Test back to BRAKE at the end is commented out on purpose until the #17 experiment is done.
 Started engineering portfolio notes in `TeamCode/docs/portfolio/`: a template, an index, and the first two entries (direction convention, brake mode experiment).
 

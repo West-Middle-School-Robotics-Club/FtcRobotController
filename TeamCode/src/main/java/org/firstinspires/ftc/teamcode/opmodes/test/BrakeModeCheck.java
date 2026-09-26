@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.opmodes.test;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.opmodes.teleop.DriverControls;
@@ -27,11 +28,12 @@ public class BrakeModeCheck extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        // Creating the Robot reads the leftover brake mode, then sets BRAKE.
+        // Read the leftover brake mode FIRST, because creating the Robot sets BRAKE.
+        DcMotor.ZeroPowerBehavior brakeModeAtStart = TestDriveMotors.getBrakeMode(hardwareMap);
         Robot robot = new Robot(hardwareMap);
 
         while (opModeInInit()) {
-            telemetry.addData("Brake mode when this OpMode started", robot.drivetrain.getBrakeModeAtStart());
+            telemetry.addData("Brake mode when this OpMode started", brakeModeAtStart);
             telemetry.addLine("(left over from the last OpMode, or from powering up)");
             telemetry.addLine("Write this down, then press START.");
             telemetry.update();
@@ -39,16 +41,16 @@ public class BrakeModeCheck extends LinearOpMode {
 
         while (opModeIsActive()) {
             if (gamepad1.xWasPressed()) {
-                robot.drivetrain.setBrake(true);
+                TestDriveMotors.setBrake(hardwareMap, true);
             }
             if (gamepad1.yWasPressed()) {
-                robot.drivetrain.setBrake(false);
+                TestDriveMotors.setBrake(hardwareMap, false);
             }
 
             DriverControls.drive(robot.drivetrain, gamepad1);
 
-            telemetry.addData("Brake mode when this OpMode started", robot.drivetrain.getBrakeModeAtStart());
-            telemetry.addData("Brake mode NOW", robot.drivetrain.getBrakeMode());
+            telemetry.addData("Brake mode when this OpMode started", brakeModeAtStart);
+            telemetry.addData("Brake mode NOW", TestDriveMotors.getBrakeMode(hardwareMap));
             telemetry.addLine();
             telemetry.addLine("X = BRAKE     Y = FLOAT");
             telemetry.addLine("Drive full speed, let go, and see how far the robot rolls.");
@@ -57,7 +59,7 @@ public class BrakeModeCheck extends LinearOpMode {
         }
 
         // Leave the motors in BRAKE for whatever OpMode runs next.
-        robot.drivetrain.setBrake(true);
+        TestDriveMotors.setBrake(hardwareMap, true);
         robot.stop();
     }
 }

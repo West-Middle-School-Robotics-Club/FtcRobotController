@@ -7,7 +7,6 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
-import org.firstinspires.ftc.robotcore.external.navigation.UnnormalizedAngleUnit;
 
 /**
  * Odometry subsystem: the goBILDA Pinpoint with two dead-wheel pods (decision 005).
@@ -89,14 +88,5 @@ public class Odometry {
         telemetry.addData("X (in)       +forward", "%.2f", pose.getX(DistanceUnit.INCH));
         telemetry.addData("Y (in)       +left", "%.2f", pose.getY(DistanceUnit.INCH));
         telemetry.addData("Heading (°)  +counter-clockwise", "%.1f", pose.getHeading(AngleUnit.DEGREES));
-    }
-
-    /** Extra details for testing and tuning (issue #6). */
-    public void addDebugTelemetry(Telemetry telemetry) {
-        telemetry.addData("Total turning (°)", "%.1f",
-                pinpoint.getHeading(UnnormalizedAngleUnit.DEGREES));
-        telemetry.addData("Raw encoder X / Y", "%d  /  %d",
-                pinpoint.getEncoderX(), pinpoint.getEncoderY());
-        telemetry.addData("Pinpoint update rate (Hz)", "%.0f", pinpoint.getFrequency());
     }
 }
