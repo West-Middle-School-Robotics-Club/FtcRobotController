@@ -68,5 +68,12 @@ public class PinpointTest extends LinearOpMode {
         }
 
         robot.stop();
+
+        // EXPERIMENT (issue #17): this OpMode set the drive motors to FLOAT.
+        // The SDK does NOT reset brake mode between OpModes, so an OpMode that never sets it
+        // (like manualDriver) may keep coasting after this one. This line would switch back to BRAKE.
+        // It's commented out ON PURPOSE so we can see the problem happen first. After the
+        // experiment, un-comment it:
+        // robot.drivetrain.setBrake(true);
     }
 }

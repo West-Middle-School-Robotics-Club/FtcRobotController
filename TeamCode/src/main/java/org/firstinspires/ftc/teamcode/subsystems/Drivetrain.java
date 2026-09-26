@@ -30,6 +30,9 @@ public class Drivetrain {
     private final DcMotor backLeftDrive;
     private final DcMotor backRightDrive;
 
+    // What the hub's brake mode was BEFORE this class changed it (see getBrakeModeAtStart()).
+    private final DcMotor.ZeroPowerBehavior brakeModeAtStart;
+
     public Drivetrain(HardwareMap hardwareMap) {
         frontLeftDrive  = hardwareMap.get(DcMotor.class, FRONT_LEFT_DRIVE_NAME);
         frontRightDrive = hardwareMap.get(DcMotor.class, FRONT_RIGHT_DRIVE_NAME);
@@ -42,6 +45,9 @@ public class Drivetrain {
         backLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
         backRightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        // Remember the brake mode left over from before, for the Brake Mode Check test.
+        brakeModeAtStart = frontLeftDrive.getZeroPowerBehavior();
 
         for (DcMotor motor : new DcMotor[] {frontLeftDrive, frontRightDrive, backLeftDrive, backRightDrive}) {
             // BRAKE makes the robot stop quickly when the sticks are released.
@@ -94,6 +100,20 @@ public class Drivetrain {
         for (DcMotor motor : new DcMotor[] {frontLeftDrive, frontRightDrive, backLeftDrive, backRightDrive}) {
             motor.setZeroPowerBehavior(behavior);
         }
+    }
+
+    /**
+     * The brake mode the hub had when this OpMode started, BEFORE our constructor set BRAKE.
+     * The SDK does NOT reset brake mode between OpModes, so this shows what the
+     * previous OpMode left behind (or the power-up default). Used by the Brake Mode Check test.
+     */
+    public DcMotor.ZeroPowerBehavior getBrakeModeAtStart() {
+        return brakeModeAtStart;
+    }
+
+    /** The brake mode the drive motors are using right now. */
+    public DcMotor.ZeroPowerBehavior getBrakeMode() {
+        return frontLeftDrive.getZeroPowerBehavior();
     }
 
     /** Stop all drive motors. */

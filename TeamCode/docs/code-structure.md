@@ -19,6 +19,7 @@ teamcode/
     │   └── ExampleTeleOp.java
     ├── auto/
     └── test/               ← test and tuning OpModes (the "Tests" group on the Driver Station)
+        ├── BrakeModeCheck.java
         └── PinpointTest.java
 ```
 
