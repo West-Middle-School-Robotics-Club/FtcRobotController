@@ -37,7 +37,7 @@ If a name doesn't match, the OpMode crashes on INIT with an error like `Unable t
 
 | Config name | Device type | Hub / Port | Notes |
 |---|---|---|---|
-| `pinpoint` | goBILDA Pinpoint Odometry Computer | Control Hub / I2C bus __ | Not in code yet |
+| `pinpoint` | goBILDA Pinpoint Odometry Computer | Control Hub / I2C bus __ | `subsystems/Odometry.java`. Pod type, offsets and directions are tuned with the Pinpoint Test OpMode (#6) |
 
 ## Intake (`subsystems/Intake.java`, issue #4)
 

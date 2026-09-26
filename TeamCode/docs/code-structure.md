@@ -11,13 +11,19 @@ teamcode/
 ├── subsystems/             ← one class per mechanism; the ONLY code that touches hardware
 │   ├── Drivetrain.java
 │   ├── Intake.java
-│   └── Launcher.java
+│   ├── Launcher.java
+│   └── Odometry.java       ← the Pinpoint (X, Y, heading). Not in Robot.java yet; see below
 └── opmodes/                ← what shows up on the Driver Station
     ├── teleop/
     │   ├── DriverControls.java ← the ONLY code that turns gamepad sticks into drive commands
     │   └── ExampleTeleOp.java
-    └── auto/
+    ├── auto/
+    └── test/               ← test and tuning OpModes (the "Tests" group on the Driver Station)
+        └── PinpointTest.java
 ```
+
+`Odometry` is created directly by the OpModes that need it, not by `Robot.java` yet. Once the Pinpoint is
+configured and tested on the robot (issue #6), we'll add it to `Robot.java` like the other subsystems.
 
 ## The rules
 

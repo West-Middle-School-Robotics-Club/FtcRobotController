@@ -82,6 +82,20 @@ public class Drivetrain {
         backRightDrive.setPower(backRightPower / max);
     }
 
+    /**
+     * Choose what the wheels do when power is 0.
+     * true  = BRAKE: the robot stops quickly (normal driving).
+     * false = FLOAT: the wheels spin freely, so the robot is easy to push by hand (testing).
+     * Every OpMode starts in BRAKE, because the constructor sets it.
+     */
+    public void setBrake(boolean brake) {
+        DcMotor.ZeroPowerBehavior behavior =
+                brake ? DcMotor.ZeroPowerBehavior.BRAKE : DcMotor.ZeroPowerBehavior.FLOAT;
+        for (DcMotor motor : new DcMotor[] {frontLeftDrive, frontRightDrive, backLeftDrive, backRightDrive}) {
+            motor.setZeroPowerBehavior(behavior);
+        }
+    }
+
     /** Stop all drive motors. */
     public void stop() {
         drive(0, 0, 0);
