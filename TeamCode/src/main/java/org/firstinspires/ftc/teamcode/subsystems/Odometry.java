@@ -24,10 +24,11 @@ public class Odometry {
     // Config name (decision 009). Must match the Driver Station robot configuration.
     public static final String PINPOINT_NAME = "pinpoint";
 
-    // TODO(#6) Step 0: pick the pod type we have: goBILDA_SWINGARM_POD or goBILDA_4_BAR_POD.
+    // TODO(#6) Step 0: we believe we have SWINGARM pods. Confirm by looking at the robot.
+    // The other option is goBILDA_4_BAR_POD.
     // If this is wrong, the 48 in test will read way off (about 32 in or 72 in).
     public static final GoBildaPinpointDriver.GoBildaOdometryPods POD_TYPE =
-            GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD;
+            GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_SWINGARM_POD;
 
     // TODO(#6) Step 1: measure from the robot's center, in millimeters.
     // X pod offset: how far SIDEWAYS the X (forward) pod is.   Left of center = +, right = -
