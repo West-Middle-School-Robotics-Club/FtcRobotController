@@ -21,4 +21,5 @@ Added `Drivetrain.setBrake()` so the robot can be pushed by hand during tests.
 Added the "Brake Mode Check" test OpMode and experiment issue #17: does brake mode carry over between OpModes?
 Drivetrain now remembers the brake mode left over from before it starts (`getBrakeModeAtStart()`).
 The line that switches Pinpoint Test back to BRAKE at the end is commented out on purpose until the #17 experiment is done.
+Started engineering portfolio notes in `TeamCode/docs/portfolio/`: a template, an index, and the first two entries (direction convention, brake mode experiment).
 

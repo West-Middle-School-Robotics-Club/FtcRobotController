@@ -2,7 +2,7 @@
 
 Everything our team makes lives in `TeamCode/` (decisions 001 and 010):
 - **Code:** `TeamCode/src/main/java/org/firstinspires/ftc/teamcode/`
-- **Docs:** `TeamCode/docs/` (this file, `decisions.md`, `hardware-config.md`)
+- **Docs:** `TeamCode/docs/` (this file, `decisions.md`, `hardware-config.md`, `changes-made.md`, and `portfolio/`)
 We use **structured subsystems** (decision 006).
 
 ```

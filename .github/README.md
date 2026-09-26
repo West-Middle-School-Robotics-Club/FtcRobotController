@@ -13,3 +13,4 @@ Jonathan Rakozy, Matt Becker, & Nadinne Motta
 - [Architecture Decisions](../TeamCode/docs/decisions.md)
 - [Code Structure](../TeamCode/docs/code-structure.md)
 - [Hardware Config](../TeamCode/docs/hardware-config.md)
+- [Engineering Portfolio Notes](../TeamCode/docs/portfolio/README.md)
