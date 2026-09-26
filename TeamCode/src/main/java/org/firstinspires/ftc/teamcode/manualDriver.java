@@ -11,10 +11,10 @@ public class manualDriver extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         // Declare our motors
         // Make sure your ID's match your configuration
-        DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeftMotor");
-        DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeftMotor");
-        DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
-        DcMotor backRightMotor = hardwareMap.dcMotor.get("backRightMotor");
+        DcMotor frontLeftDrive = hardwareMap.dcMotor.get("frontLeftDrive");
+        DcMotor backLeftDrive = hardwareMap.dcMotor.get("backLeftDrive");
+        DcMotor frontRightDrive = hardwareMap.dcMotor.get("frontRightDrive");
+        DcMotor backRightDrive = hardwareMap.dcMotor.get("backRightDrive");
 
         // Reverse the right side motors. This may be wrong for your setup.
         // If your robot moves backwards when commanded to go forwards,
@@ -22,8 +22,8 @@ public class manualDriver extends LinearOpMode {
         // See the note about this earlier on this page.
         //NOTE IRONDOGS 09/23/26:
         //Changed to left side as it is backwards if we have it on right side
-        frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
 
@@ -43,10 +43,10 @@ public class manualDriver extends LinearOpMode {
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
 
-            frontLeftMotor.setPower(frontLeftPower);
-            backLeftMotor.setPower(backLeftPower);
-            frontRightMotor.setPower(frontRightPower);
-            backRightMotor.setPower(backRightPower);
+            frontLeftDrive.setPower(frontLeftPower);
+            backLeftDrive.setPower(backLeftPower);
+            frontRightDrive.setPower(frontRightPower);
+            backRightDrive.setPower(backRightPower);
         }
     }
 }
