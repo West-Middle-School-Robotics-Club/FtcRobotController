@@ -66,16 +66,6 @@ public class Odometry {
         return pinpoint.getPosition();
     }
 
-    /** Set the position back to 0,0,0 without recalibrating the IMU. Safe while moving. */
-    public void resetPosition() {
-        pinpoint.setPosition(new Pose2D(DistanceUnit.INCH, 0, 0, AngleUnit.DEGREES, 0));
-    }
-
-    /** Set the position to 0,0,0 AND recalibrate the IMU. The robot must be STILL. */
-    public void resetPositionAndCalibrate() {
-        pinpoint.resetPosAndIMU();
-    }
-
     /** READY when it's working. CALIBRATING right after a reset. FAULT_... means a problem. */
     public GoBildaPinpointDriver.DeviceStatus getStatus() {
         return pinpoint.getDeviceStatus();

@@ -4,6 +4,9 @@ import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.robotcore.external.navigation.UnnormalizedAngleUnit;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.opmodes.teleop.DriverControls;
@@ -29,7 +32,7 @@ public class PinpointTest extends LinearOpMode {
     public void runOpMode() {
         Robot robot = new Robot(hardwareMap);
         Odometry odometry = new Odometry(hardwareMap);
-        // Test-only: the same Pinpoint, read directly for extra tuning details (code-structure rule 8).
+        // Test-only: the same Pinpoint, used directly for resets and extra tuning details (code-structure rule 8).
         GoBildaPinpointDriver pinpoint = hardwareMap.get(GoBildaPinpointDriver.class, Odometry.PINPOINT_NAME);
 
         // Easier to push the robot by hand for the distance tests.
@@ -51,10 +54,12 @@ public class PinpointTest extends LinearOpMode {
             odometry.update();
 
             if (gamepad1.aWasPressed()) {
-                odometry.resetPosition();
+                // Back to 0,0,0 without recalibrating the IMU.
+                pinpoint.setPosition(new Pose2D(DistanceUnit.INCH, 0, 0, AngleUnit.DEGREES, 0));
             }
             if (gamepad1.bWasPressed()) {
-                odometry.resetPositionAndCalibrate();
+                // Back to 0,0,0 AND recalibrate the IMU. The robot must be STILL.
+                pinpoint.resetPosAndIMU();
             }
 
             DriverControls.drive(robot.drivetrain, gamepad1);
