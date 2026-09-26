@@ -6,5 +6,7 @@ pluginManagement {
     }
 }
 
+rootProject.name = 'irondogsrobotcontroller'
+
 include ':FtcRobotController'
 include ':TeamCode'
