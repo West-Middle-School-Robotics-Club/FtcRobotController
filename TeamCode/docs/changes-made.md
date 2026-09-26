@@ -13,3 +13,12 @@ Drivetrain uses the same motor directions as manualDriver.
 Drive motors are renamed to frontLeftDrive, frontRightDrive, backLeftDrive, backRightDrive (decision 009). The Driver Station robot configuration uses the new names. manualDriver and manualDriver_kids_copy were updated to the new names. Intake and Launcher are empty starters (issues #4 and #5).
 All code uses one direction convention: +X forward, +Y left, +turn counter-clockwise (decision 007).
 See `TeamCode/docs/code-structure.md` for how the code is organized and `TeamCode/docs/hardware-config.md` for config names.
+
+9/26:
+Added `subsystems/Odometry.java` (the Pinpoint) and the "Pinpoint Test" OpMode in `opmodes/test/` (issue #6).
+Students tune the pod type, offsets and directions at the top of Odometry.java by following the test procedure in issue #6.
+Added the "Brake Mode Check" test OpMode and experiment issue #17: does brake mode carry over between OpModes?
+Test-only brake code lives in `opmodes/test/TestDriveMotors.java`, not in Drivetrain (code-structure rule 8), so Pinpoint Test can let the robot be pushed by hand.
+The line that switches Pinpoint Test back to BRAKE at the end is commented out on purpose until the #17 experiment is done.
+Started engineering portfolio notes in `TeamCode/docs/portfolio/`: a template, an index, and the first two entries (direction convention, brake mode experiment).
+

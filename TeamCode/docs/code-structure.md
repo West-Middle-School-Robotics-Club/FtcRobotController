@@ -2,7 +2,7 @@
 
 Everything our team makes lives in `TeamCode/` (decisions 001 and 010):
 - **Code:** `TeamCode/src/main/java/org/firstinspires/ftc/teamcode/`
-- **Docs:** `TeamCode/docs/` (this file, `decisions.md`, `hardware-config.md`)
+- **Docs:** `TeamCode/docs/` (this file, `decisions.md`, `hardware-config.md`, `changes-made.md`, and `portfolio/`)
 We use **structured subsystems** (decision 006).
 
 ```
@@ -11,13 +11,21 @@ teamcode/
 ├── subsystems/             ← one class per mechanism; the ONLY code that touches hardware
 │   ├── Drivetrain.java
 │   ├── Intake.java
-│   └── Launcher.java
+│   ├── Launcher.java
+│   └── Odometry.java       ← the Pinpoint (X, Y, heading). Not in Robot.java yet; see below
 └── opmodes/                ← what shows up on the Driver Station
     ├── teleop/
     │   ├── DriverControls.java ← the ONLY code that turns gamepad sticks into drive commands
     │   └── ExampleTeleOp.java
-    └── auto/
+    ├── auto/
+    └── test/               ← test and tuning OpModes (the "Tests" group on the Driver Station)
+        ├── BrakeModeCheck.java
+        ├── PinpointTest.java
+        └── TestDriveMotors.java ← test-only helper; never used by real robot code
 ```
+
+`Odometry` is created directly by the OpModes that need it, not by `Robot.java` yet. Once the Pinpoint is
+configured and tested on the robot (issue #6), we'll add it to `Robot.java` like the other subsystems.
 
 ## The rules
 
@@ -34,6 +42,10 @@ teamcode/
    only the OpMode knows where commands come from (sticks in TeleOp, code in Autonomous).
 7. **Every TeleOp drives with `DriverControls.drive(robot.drivetrain, gamepad1);`.** Don't read the drive
    sticks anywhere else. Autonomous skips `DriverControls` and calls `robot.drivetrain.drive(...)` directly.
+8. **Test code stays in `opmodes/test/`.** Test and tuning OpModes (and their helpers) may break rules 1–7
+   when a test needs to, for example by reading or changing motor settings directly. Real robot code
+   (subsystems, `opmodes/teleop/`, `opmodes/auto/`) **never** uses anything from `opmodes/test/`, and we never
+   add test-only methods to subsystems. That way test code can be deleted without touching real code.
 
 ## Directions (decision 007)
 
